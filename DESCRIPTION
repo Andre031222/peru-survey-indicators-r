@@ -19,7 +19,8 @@ Depends: R (>= 4.1)
 Imports:
     faperu (>= 0.2.0),
     stats,
-    survey
+    survey,
+    utils
 Suggests:
     ggplot2,
     sf,
