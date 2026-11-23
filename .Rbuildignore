@@ -1,0 +1,6 @@
+^LICENSE\.md$
+^README\.md$
+^docs$
+^\.git$
+^\.gitignore$
+^.*\.Rproj$

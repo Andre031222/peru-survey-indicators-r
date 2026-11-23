@@ -1,0 +1,32 @@
+# Datos y caché: nunca se suben
+datos/
+data-raw/descargas/
+cache/
+*.zip
+*.rar
+*.sav
+*.dta
+*.dbf
+*.parquet
+
+# Compilados y artefactos de R
+src/*.o
+src/*.so
+src/*.dll
+*.o
+*.so
+*.tar.gz
+*.Rcheck/
+.Rproj.user/
+.Rhistory
+.RData
+
+# Secretos
+.env
+*.pem
+*.key
+
+# Geometrías descargadas
+*.geojson
+*.gpkg
+geo/
