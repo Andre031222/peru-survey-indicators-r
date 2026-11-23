@@ -1,6 +1,6 @@
 Package: faperu.analysis
 Title: Design-Based Estimation and Cross-Survey Linkage for Peruvian Official Data
-Version: 0.0.1
+Version: 0.1.0
 Authors@R: c(
     person("Richar Andre", "Vilca Solorzano", email = "andrevilcasolorzano@gmail.com",
            role = c("aut", "cre"), comment = c(ORCID = "0009-0003-2385-5263")),
@@ -23,7 +23,10 @@ Imports:
     utils
 Suggests:
     ggplot2,
+    knitr,
+    rmarkdown,
     sf,
     testthat (>= 3.0.0)
+VignetteBuilder: knitr
 Config/testthat/edition: 3
 Config/roxygen2/version: 8.0.0

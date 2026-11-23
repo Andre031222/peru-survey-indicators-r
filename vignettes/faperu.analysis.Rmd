@@ -1,0 +1,99 @@
+---
+title: "From microdata to a map: poverty and women producers by department"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{From microdata to a map}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = FALSE)
+```
+
+This guide crosses two surveys of 2024: monetary poverty from ENAHO and the share of women among
+agricultural producers from ENA, both by department, and maps them. The code does not run when
+the vignette is built, because it needs the INEI files (about 150 MB for the two modules) and the
+INEI boundaries (9 MB); `faperu` downloads them to its cache the first time.
+
+## 1. One estimate with its precision
+
+```{r}
+library(faperu)
+library(faperu.analysis)
+
+s <- fa_read("enaho", 2024, "34", file = "Sumaria-2024\\.")
+s$poor <- s$pobreza %in% 1:2
+s$w <- s$factor07 * s$mieperho          # poverty counts people, not households
+d <- fa_design(s, "enaho", weight = "w")
+fpa_estimate(d, "poor", type = "prop")
+```
+
+`fpa_estimate()` gives the estimate (27.6%), its standard error, a 95% interval, the coefficient
+of variation and the INEI quality band: below 5% "muy buena", up to 10% "buena", up to 15%
+"aceptable", above that "referencial". `by` takes `"department"`, `"area"`, `"district"` or any
+column of the data.
+
+## 2. Ready indicators
+
+The same number comes ready, by department:
+
+```{r}
+fpa_indicators()
+poverty <- fpa_indicator("pobreza_monetaria", 2024, by = "department")
+women <- fpa_indicator("mujeres_productoras", 2024, by = "department")
+```
+
+Each ready indicator was checked against the figure INEI published for 2024. With the files of
+the INEI microdata portal the package gives:
+
+| Indicator | Survey | INEI 2024 | faperu.analysis |
+|---|---|---|---|
+| Monetary poverty (urban, rural) | ENAHO | 27.6 (24.8, 39.3) | 27.58 (24.81, 39.30) |
+| Extreme poverty | ENAHO | 5.5 | 5.50 |
+| Open unemployment | EPEN | 5.6 | 5.57 |
+| Informal employment | EPEN | 70.9 | 70.95 |
+| Anaemia 6-35 months, WHO 2024 (urban, rural) | ENDES | 35.3 (31.2, 44.7) | 35.33 (31.23, 44.65) |
+| Anaemia 6-35 months, RM 363-2022 (urban, rural) | ENDES | 43.7 (40.2, 51.9) | 43.74 (40.17, 51.85) |
+| Women among producers | ENA | 31.5 | 31.46 |
+
+The sources are in `fpa_indicators()$source`. The package tests repeat these checks whenever the
+files are on disk.
+
+## 3. A table for the paper
+
+```{r}
+cat(fpa_table(poverty, format = "markdown", caption = "Monetary poverty by department, 2024 (%)"),
+    sep = "\n")
+```
+
+Departments whose CV is above 15% (Ica, Madre de Dios and Moquegua for poverty in 2024) carry an
+asterisk and a note. `format = "latex"` gives the same table for LaTeX.
+
+## 4. Linking the two surveys
+
+```{r}
+both <- fpa_link(poverty = poverty, women = women)
+head(both)
+cor(both$estimate_poverty, both$estimate_women)
+```
+
+`fpa_link()` joins by department code and year. It warns when an estimate is "referencial",
+so a correlation does not lean on numbers INEI would not publish without a caveat. With
+`level = "district"` the codes are first moved to the 2017 Census frame with `fa_ubigeo()`;
+districts created after 2017 join the district they split from, and the two that split from
+several districts (Lambras and Santa Lucia) are left out with a warning.
+
+## 5. Maps
+
+```{r}
+fpa_map(both, "estimate_poverty", title = "Monetary poverty, 2024")
+fpa_map(both, "estimate_women", title = "Women among agricultural producers, 2024")
+```
+
+The boundaries are the department layer of INEI's spatial data infrastructure
+(<https://ide.inei.gob.pe/>), downloaded once to `fa_cache()/GEO`. `fpa_geometry("district")`
+gives the 1890 districts of the current layer; `fpa_map(..., level = "district", base = 2017)`
+merges them into the 2017 frame used by `fpa_link()`.
+
+Both maps return `ggplot` objects, so titles, themes and `ggplot2::ggsave()` work as usual.
