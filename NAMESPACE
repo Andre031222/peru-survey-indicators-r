@@ -3,4 +3,5 @@
 export(fpa_estimate)
 export(fpa_indicator)
 export(fpa_indicators)
+export(fpa_link)
 export(fpa_quality)
