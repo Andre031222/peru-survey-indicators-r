@@ -46,7 +46,8 @@ variation and the INEI quality band ([fpa_quality()]).
 \details{
 Intervals are normal (Wald) intervals; for proportions they
   are cut at 0 and 1. If the option `survey.lonely.psu` is not set,
-  strata with a single primary unit are handled with `"adjust"`, as
+  default (`"fail"`), strata with a single primary unit are handled with
+  `"adjust"`, as
   INEI does, only during the call.
 }
 \examples{

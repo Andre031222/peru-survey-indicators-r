@@ -21,9 +21,9 @@
 #'   `estimate`, `se`, `ci_low`, `ci_high`, `cv` (percent), `n`
 #'   (unweighted cases) and `quality`.
 #' @details Intervals are normal (Wald) intervals; for proportions they
-#'   are cut at 0 and 1. If the option `survey.lonely.psu` is not set,
-#'   strata with a single primary unit are handled with `"adjust"`, as
-#'   INEI does, only during the call.
+#'   are cut at 0 and 1. If the option `survey.lonely.psu` is left at its
+#'   default (`"fail"`), strata with a single primary unit are handled with
+#'   `"adjust"` during the call.
 #' @export
 #' @examples
 #' library(survey)
@@ -51,7 +51,7 @@ fpa_estimate <- function(design, var, type = c("mean", "prop", "total"),
   }
   if (!na.rm && anyNA(y)) .abort("missing", "`%s` has missing values; use na.rm = TRUE.", var)
 
-  if (is.null(getOption("survey.lonely.psu"))) {
+  if (identical(getOption("survey.lonely.psu", "fail"), "fail")) {
     old <- options(survey.lonely.psu = "adjust")
     on.exit(options(old), add = TRUE)
   }
