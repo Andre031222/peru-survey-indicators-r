@@ -30,3 +30,6 @@ src/*.dll
 *.geojson
 *.gpkg
 geo/
+
+# Sitio pkgdown: se genera, no se versiona
+docs/

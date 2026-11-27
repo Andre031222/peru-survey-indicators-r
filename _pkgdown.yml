@@ -1,0 +1,48 @@
+url: https://andre031222.github.io/faperu.analysis/
+lang: es
+
+template:
+  bootstrap: 5
+  bslib:
+    primary: "#1F4E79"
+    base_font: {google: "Source Sans 3"}
+    heading_font: {google: "Source Serif 4"}
+    code_font: {google: "JetBrains Mono"}
+
+home:
+  title: "faperu.analysis: indicadores oficiales del Perú con su diseño muestral"
+  description: >
+    Estimaciones con error estándar, intervalo y banda de calidad del INEI,
+    indicadores verificados contra cifras oficiales, cruce de encuestas por
+    ubigeo, mapas y tablas.
+
+navbar:
+  structure:
+    left: [intro, reference, articles, news]
+    right: [search, github]
+  components:
+    github:
+      icon: fa-github
+      href: https://github.com/Andre031222/faperu.analysis
+      aria-label: GitHub
+
+reference:
+- title: "Estimar / Estimate"
+  contents:
+  - fpa_estimate
+  - fpa_quality
+- title: "Indicadores listos / Ready indicators"
+  contents:
+  - fpa_indicators
+  - fpa_indicator
+- title: "Cruzar encuestas / Link surveys"
+  contents:
+  - fpa_link
+- title: "Mapas y tablas / Maps and tables"
+  contents:
+  - fpa_geometry
+  - fpa_map
+  - fpa_table
+- title: "Paquete / Package"
+  contents:
+  - faperu.analysis-package

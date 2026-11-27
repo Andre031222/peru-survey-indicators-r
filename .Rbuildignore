@@ -1,6 +1,8 @@
-^LICENSE\.md$
-^README\.md$
 ^docs$
 ^\.git$
 ^\.gitignore$
+^LICENSE\.md$
+^pkgdown$
+^_pkgdown\.yml$
+^README\.md$
 ^.*\.Rproj$

@@ -2,6 +2,8 @@
 
 First version.
 
+- Needs faperu 0.3.0 or later. Tests that use a local copy of the microdata run only when
+  `FAPERU_LOCAL` points to it. Site configuration for pkgdown (`_pkgdown.yml`).
 - `fpa_estimate()`: mean, proportion or total by domain (national, department, area, district or
   any column) with standard error, confidence interval, coefficient of variation and the INEI
   quality band (`fpa_quality()`).
