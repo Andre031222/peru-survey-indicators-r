@@ -27,8 +27,9 @@ Suggests:
     rmarkdown,
     sf,
     testthat (>= 3.0.0)
-URL: https://github.com/Andre031222/faperu.analysis, https://andre031222.github.io/faperu.analysis/
-BugReports: https://github.com/Andre031222/faperu.analysis/issues
+URL: https://github.com/Andre031222/peru-survey-indicators-r, https://andre031222.github.io/peru-survey-indicators-r/
+BugReports: https://github.com/Andre031222/peru-survey-indicators-r/issues
+Remotes: github::Andre031222/peru-official-surveys-r
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 Config/roxygen2/version: 8.0.0

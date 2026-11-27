@@ -22,6 +22,15 @@ turns them into numbers for a paper:
   boundaries, downloaded once to the cache.
 - [fpa_table()]: a table ready for a paper.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/Andre031222/peru-survey-indicators-r}
+  \item \url{https://andre031222.github.io/peru-survey-indicators-r/}
+  \item Report bugs at \url{https://github.com/Andre031222/peru-survey-indicators-r/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Richar Andre Vilca Solorzano \email{andrevilcasolorzano@gmail.com} (\href{https://orcid.org/0009-0003-2385-5263}{ORCID})
 
