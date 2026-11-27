@@ -1,5 +1,13 @@
 # faperu.analysis: Peruvian Official Indicators with Their Survey Design <img src="man/figures/logo.png" align="right" height="139" alt="faperu.analysis logo" />
 
+> **This package is now part of [faperu](https://github.com/Andre031222/peru-official-surveys-r).**
+> Since faperu 0.4.0 every function here lives in faperu with the `fa_` prefix
+> (`fpa_estimate()` is `fa_estimate()`, and so on). Install faperu instead; this repository is
+> kept only for reference and receives no more changes.
+>
+> **Este paquete ahora es parte de faperu.** Desde la versión 0.4.0 todas sus funciones están en
+> faperu con el prefijo `fa_`. Instala faperu; este repositorio queda solo como referencia.
+
 **Design-based estimates, INEI quality bands, checked indicators, cross-survey linkage and maps in R**
 
 [![Version](https://img.shields.io/badge/Version-0.1.0-0F426F?style=flat-square)](NEWS.md)
