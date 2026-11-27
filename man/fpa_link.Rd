@@ -32,7 +32,8 @@ those present in all (`FALSE`).}
 A data frame with the key (`department` or `ubigeo_base`), its
   `name`, `year` when joined by year, and for each table the columns
   `estimate_<name>`, `se_<name>`, `cv_<name>`, `quality_<name>` and
-  `n_<name>` (plus `status_<name>` for districts).
+  `n_<name>` (plus `status_<name>` for districts), of class `fpa_link`
+  (see [fpa-methods]).
 }
 \description{
 Puts side by side estimate tables from different surveys (from

@@ -35,7 +35,8 @@ area from an `area` column (1 urban, 2 rural) or ENDES `hv025`.}
 A data frame with one row per domain: `by`, `domain`, `name`
   (department name when `by = "department"`), `var`, `type`,
   `estimate`, `se`, `ci_low`, `ci_high`, `cv` (percent), `n`
-  (unweighted cases) and `quality`.
+  (unweighted cases) and `quality`, of class `fpa_estimate` (see
+  [fpa-methods]).
 }
 \description{
 Estimates a mean, a proportion or a total from a survey design (for

@@ -24,7 +24,9 @@
   }
   col <- .col(data, by)
   if (is.null(col)) .abort("no_domain", "Column `%s` not found in the design.", by)
-  as.character(unclass(data[[col]]))
+  v <- data[[col]]
+  # A factor is named by its levels; a labelled INEI column by its codes.
+  if (is.factor(v)) as.character(v) else as.character(unclass(v))
 }
 
 .ubigeo <- function(data) {

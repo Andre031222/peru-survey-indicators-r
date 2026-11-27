@@ -19,7 +19,8 @@
 #' @return A data frame with the key (`department` or `ubigeo_base`), its
 #'   `name`, `year` when joined by year, and for each table the columns
 #'   `estimate_<name>`, `se_<name>`, `cv_<name>`, `quality_<name>` and
-#'   `n_<name>` (plus `status_<name>` for districts).
+#'   `n_<name>` (plus `status_<name>` for districts), of class `fpa_link`
+#'   (see [fpa-methods]).
 #' @details Warns when a table has estimates with CV above 15%
 #'   ("referencial" for INEI), when a district split from several 2017
 #'   districts ("multi_parent") and cannot be placed, and when several
@@ -49,7 +50,7 @@ fpa_link <- function(..., level = c("department", "district"), base = 2017,
   out$name <- .area_names(out[[key]], level, base)
   out <- out[order(out[[key]]), c(by, "name", setdiff(names(out), c(by, "name"))), drop = FALSE]
   rownames(out) <- NULL
-  out
+  .as(out, "fpa_link")
 }
 
 .link_one <- function(x, name, level, base, by_year) {

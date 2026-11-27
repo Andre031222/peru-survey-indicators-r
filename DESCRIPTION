@@ -18,10 +18,12 @@ Encoding: UTF-8
 Depends: R (>= 4.1)
 Imports:
     faperu (>= 0.3.0),
+    graphics,
     stats,
     survey,
     utils
 Suggests:
+    grDevices,
     ggplot2,
     knitr,
     rmarkdown,

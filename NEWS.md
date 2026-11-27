@@ -1,3 +1,12 @@
+# faperu.analysis (development version)
+
+- `fpa_estimate()` and `fpa_indicator()` return class `fpa_estimate`, and `fpa_link()` class
+  `fpa_link`. They are still data frames, but now print as a formatted table with the INEI
+  quality band; `summary()` counts estimates per quality band and `plot()` draws each estimate
+  with its confidence interval (base graphics, no new dependency).
+- A factor used as domain (`by = "stype"`) is named by its levels; it came out as its internal
+  codes (1, 2, 3).
+
 # faperu.analysis 0.1.0
 
 First version.

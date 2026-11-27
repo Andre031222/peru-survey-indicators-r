@@ -19,7 +19,8 @@
 #' @return A data frame with one row per domain: `by`, `domain`, `name`
 #'   (department name when `by = "department"`), `var`, `type`,
 #'   `estimate`, `se`, `ci_low`, `ci_high`, `cv` (percent), `n`
-#'   (unweighted cases) and `quality`.
+#'   (unweighted cases) and `quality`, of class `fpa_estimate` (see
+#'   [fpa-methods]).
 #' @details Intervals are normal (Wald) intervals; for proportions they
 #'   are cut at 0 and 1. If the option `survey.lonely.psu` is left at its
 #'   default (`"fail"`), strata with a single primary unit are handled with
@@ -85,5 +86,5 @@ fpa_estimate <- function(design, var, type = c("mean", "prop", "total"),
                     cv = cv, n = n, quality = fpa_quality(cv), stringsAsFactors = FALSE)
   rownames(out) <- NULL
   attr(out, "level") <- level
-  out
+  .as(out, "fpa_estimate")
 }
