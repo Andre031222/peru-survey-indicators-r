@@ -4,8 +4,8 @@ Version: 0.1.0
 Authors@R: c(
     person("Richar Andre", "Vilca Solorzano", email = "andrevilcasolorzano@gmail.com",
            role = c("aut", "cre"), comment = c(ORCID = "0009-0003-2385-5263")),
-    person("Dina Maribel", "Yana-Yucra", role = "aut",
-           comment = c(ORCID = "0009-0003-6218-2735"))
+    person("Fred", "Torres Cruz", role = "aut",
+           comment = c(ORCID = "0000-0003-0834-6834"))
   )
 Description: Companion to 'faperu'. Design-based estimates of means,
     proportions and totals with standard errors, confidence intervals and

@@ -136,4 +136,4 @@ fpa_map(p, title = "Pobreza monetaria 2024")
 Code under the MIT license, see [LICENSE.md](LICENSE.md).
 
 Richar Andre Vilca Solorzano ([ORCID 0009-0003-2385-5263](https://orcid.org/0009-0003-2385-5263))
-and Dina Maribel Yana-Yucra ([ORCID 0009-0003-6218-2735](https://orcid.org/0009-0003-6218-2735)).
+and Fred Torres Cruz ([ORCID 0000-0003-0834-6834](https://orcid.org/0000-0003-0834-6834)).

@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2026 Richar Andre Vilca Solorzano and Dina Maribel Yana-Yucra
+Copyright (c) 2026 Richar Andre Vilca Solorzano and Fred Torres Cruz
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

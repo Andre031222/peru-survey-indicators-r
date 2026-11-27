@@ -37,7 +37,7 @@ Useful links:
 Authors:
 \itemize{
   \item Richar Andre Vilca Solorzano \email{andrevilcasolorzano@gmail.com} (\href{https://orcid.org/0009-0003-2385-5263}{ORCID})
-  \item Dina Maribel Yana-Yucra (\href{https://orcid.org/0009-0003-6218-2735}{ORCID})
+  \item Fred Torres Cruz (\href{https://orcid.org/0000-0003-0834-6834}{ORCID})
 }
 
 }
