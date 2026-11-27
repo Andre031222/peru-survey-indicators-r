@@ -1,14 +1,14 @@
-# faperu.analysis: Peruvian Official Indicators with Their Survey Design
+# faperu.analysis: Peruvian Official Indicators with Their Survey Design <img src="man/figures/logo.png" align="right" height="139" alt="faperu.analysis logo" />
 
 **Design-based estimates, INEI quality bands, checked indicators, cross-survey linkage and maps in R**
 
-[![Version](https://img.shields.io/badge/Version-0.1.0-1F4E79?style=flat-square)](NEWS.md)
+[![Version](https://img.shields.io/badge/Version-0.1.0-0F426F?style=flat-square)](NEWS.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-337AB7?style=flat-square)](LICENSE.md)
 [![R >= 4.1](https://img.shields.io/badge/R-%E2%89%A5_4.1-276DC3?style=flat-square&logo=r&logoColor=white)](https://www.r-project.org/)
 [![R CMD check](https://img.shields.io/badge/R_CMD_check-OK-2E7D32?style=flat-square)](#tests)
 [![Tests](https://img.shields.io/badge/Tests-99_passing-2E7D32?style=flat-square)](tests/testthat/)
 [![Official figures](https://img.shields.io/badge/INEI_2024_figures-7_reproduced-7B1FA2?style=flat-square)](#checked-indicators)
-[![Data: faperu](https://img.shields.io/badge/Data-faperu-8C1D18?style=flat-square)](https://github.com/Andre031222/peru-official-surveys-r)
+[![Data: faperu](https://img.shields.io/badge/Data-faperu-17A4AE?style=flat-square)](https://github.com/Andre031222/peru-official-surveys-r)
 
 Companion to [faperu](https://github.com/Andre031222/peru-official-surveys-r). faperu brings the
 data and builds the survey design; faperu.analysis turns them into figures with their standard
