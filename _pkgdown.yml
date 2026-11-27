@@ -1,9 +1,9 @@
 url: https://andre031222.github.io/peru-survey-indicators-r/
 lang: es
 
-# Same standard pkgdown structure, a different face from faperu: a light
-# bar with a navy rule, serif titles like a statistical bulletin and the
-# sidebar on the left. Extra styles in pkgdown/extra.css and extra.js.
+# Same pattern and order as the faperu site, its own face: a light bar,
+# serif titles and navy. A home button, one theme button (automatic by
+# default), quiet code boxes and a real footer. See pkgdown/extra.css.
 template:
   bootstrap: 5
   light-switch: true
@@ -13,7 +13,7 @@ template:
     primary: "#0f426f"
     secondary: "#0b7c8f"
     link-color: "#0f426f"
-    border-radius: 0.9rem
+    border-radius: 0.75rem
     base_font: {google: "Source Sans 3"}
     heading_font: {google: "Source Serif 4"}
     code_font: {google: "JetBrains Mono"}
@@ -26,37 +26,38 @@ home:
     indicadores verificados contra cifras oficiales, uniones entre encuestas,
     tablas y mapas.
   sidebar:
-    structure: [install, links, license, citation, authors, dev]
+    structure: [links, license, citation, people]
     components:
-      install:
-        title: Instalar
+      people:
+        title: Autores
         text: >
-          `install.packages("remotes")`<br>
-          `remotes::install_github("Andre031222/peru-survey-indicators-r")`<br><br>
-          Instala también faperu. ¿Primera vez con R? Mira
-          [Instalar paso a paso](articles/instalar.html).
+          [Richar Andre Vilca Solorzano](https://orcid.org/0009-0003-2385-5263)<br>
+          [Fred Torres Cruz](https://orcid.org/0000-0003-0834-6834)
   links:
   - text: Tablero en línea
     href: http://127.0.0.1:8098/
-  - text: Sitio de faperu (los datos)
+  - text: faperu, para obtener los datos
     href: https://andre031222.github.io/peru-official-surveys-r/
 
 navbar:
   bg: light
   structure:
-    left: [intro, gallery, reference, articles, news]
-    right: [search, dashboard, github, lightswitch]
+    left: [home, intro, gallery, reference, articles, news]
+    right: [search, dashboard, github, theme]
   components:
+    home:
+      icon: fa-house
+      text: Inicio
+      href: index.html
     intro:
       text: Empezar
       href: articles/faperu.analysis.html
     gallery:
       text: Galería
       href: articles/galeria.html
-    dashboard:
-      text: Tablero
-      icon: fa-chart-column
-      href: http://127.0.0.1:8098/
+    reference:
+      text: Funciones
+      href: reference/index.html
     articles:
       text: Artículos
       menu:
@@ -66,38 +67,57 @@ navbar:
         href: articles/galeria.html
       - text: Guía completa
         href: articles/faperu.analysis.html
+    news:
+      text: Cambios
+      href: news/index.html
+    dashboard:
+      icon: fa-chart-column
+      text: Tablero
+      href: http://127.0.0.1:8098/
     github:
       icon: fa-github
       href: https://github.com/Andre031222/peru-survey-indicators-r
       aria-label: GitHub
+    theme:
+      icon: fa-circle-half-stroke
+      href: "#theme"
+      aria-label: Cambiar tema
 
 reference:
-- title: "Estimar / Estimate"
+- title: "Estimar"
   desc: "Media, proporción o total con su precisión."
   contents:
   - fpa_estimate
   - fpa_quality
-- title: "Indicadores listos / Ready indicators"
+- title: "Indicadores listos"
   desc: "Siete indicadores que reproducen las cifras oficiales del INEI."
   contents:
   - fpa_indicators
   - fpa_indicator
-- title: "Cruzar encuestas / Link surveys"
+- title: "Cruzar encuestas"
   contents:
   - fpa_link
-- title: "Mapas y tablas / Maps and tables"
+- title: "Mapas y tablas"
   contents:
   - fpa_geometry
   - fpa_map
   - fpa_table
-- title: "Impresión, resumen y gráfico / Print, summary and plot"
+- title: "Impresión, resumen y gráfico"
   contents:
   - fpa-methods
-- title: "Paquete / Package"
+- title: "Paquete"
   contents:
   - faperu.analysis-package
 
 footer:
   structure:
-    left: [developed_by]
-    right: [built_with]
+    left: [about]
+    right: [made]
+  components:
+    about: >
+      **faperu.analysis** · Richar Andre Vilca Solorzano y Fred Torres Cruz · Licencia MIT<br>
+      Independiente del INEI; nunca redistribuye microdatos.
+    made: >
+      [GitHub](https://github.com/Andre031222/peru-survey-indicators-r) ·
+      [faperu](https://andre031222.github.io/peru-official-surveys-r/) ·
+      Hecho con [pkgdown](https://pkgdown.r-lib.org/)

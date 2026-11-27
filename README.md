@@ -31,8 +31,9 @@ domain (national, area, department, district or any column), and it ships seven 
 ## Get started
 
 ```r
-remotes::install_github("Andre031222/peru-official-surveys-r")
-remotes::install_github("Andre031222/peru-survey-indicators-r")
+install.packages("remotes")
+library(remotes)
+install_github("Andre031222/peru-survey-indicators-r")   # also installs faperu
 
 library(faperu.analysis)
 p <- fpa_indicator("pobreza_monetaria", 2024, by = "department")

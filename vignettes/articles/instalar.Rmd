@@ -26,11 +26,12 @@ con R. Ábrelo después de instalar R.
 
 ## 3. Instalar faperu.analysis
 
-Copia estas dos líneas en la consola de RStudio y presiona Enter:
+Copia estas tres líneas en la consola de RStudio y presiona Enter:
 
 ```{r}
 install.packages("remotes")
-remotes::install_github("Andre031222/peru-survey-indicators-r")   # trae también faperu
+library(remotes)
+install_github("Andre031222/peru-survey-indicators-r")   # trae también faperu
 ```
 
 Cuando esté en CRAN será una sola línea: `install.packages("faperu.analysis")`.

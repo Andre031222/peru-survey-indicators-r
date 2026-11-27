@@ -1,79 +1,127 @@
-/* faperu.analysis: the standard pkgdown page with the face of a statistical
-   bulletin: light bar, serif titles, soft cards. Pure white or black page. */
+/* faperu.analysis: the same pkgdown pattern as faperu, its own face.
+   Light bar, serif titles and navy; pure white or real black page; one theme
+   button; quiet code boxes with an "R" header; smooth page changes and
+   small chart bars drifting on very wide screens. */
 
 :root, [data-bs-theme="light"] {
   --bs-body-bg: #ffffff;
-  --an-navy: #0f426f;
+  --bs-body-color: #1d1d1f;
+  --an-accent: #0f426f;
+  --an-soft: #f5f5f7;
+  --an-line: #e5e5ea;
   --an-1: #0d9488; --an-2: #2563eb; --an-3: #7c3aed; --an-4: #d97706; --an-5: #e11d48;
+  --tk-fn: #0f426f; --tk-str: #15803d; --tk-num: #b45309; --tk-com: #8e8e93;
+  --tk-kw: #7c3aed; --tk-var: #1d1d1f; --tk-op: #6e6e73; --tk-arg: #0b7c8f;
 }
 [data-bs-theme="dark"] {
   --bs-body-bg: #000000;
+  --bs-body-color: #f5f5f7;
   --bs-tertiary-bg: #1c1c1e;
   --bs-border-color: #2c2c2e;
   --bs-link-color: #7fb3ea;
   --bs-link-color-rgb: 127, 179, 234;
-  --an-navy: #7fb3ea;
+  --an-accent: #7fb3ea;
+  --an-soft: #1c1c1e;
+  --an-line: #2c2c2e;
+  --tk-fn: #7fb3ea; --tk-str: #86efac; --tk-num: #fbbf24; --tk-com: #8e8e93;
+  --tk-kw: #c4b5fd; --tk-var: #f5f5f7; --tk-op: #a1a1a6; --tk-arg: #5eead4;
 }
+html { background: var(--bs-body-bg); }
 
-/* Light bar with a thin neutral rule. */
-.navbar { background: var(--bs-body-bg) !important; border-bottom: 1px solid var(--bs-border-color); }
-.navbar .nav-link { font-weight: 600; white-space: nowrap; }
-.navbar .navbar-brand { font-family: "Source Serif 4", Georgia, serif; font-weight: 700; }
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .18s; }
 
-main { margin-top: 1.8rem; }
+/* ---- Top bar: light, aligned, compact, never cut at the edge --------- */
+.navbar { background: var(--bs-body-bg) !important; border-bottom: 1px solid var(--an-line); padding-block: .55rem; }
+.navbar > .container, .navbar > .container-xxl { flex-wrap: nowrap; gap: .5rem; }
+.navbar-collapse { align-items: center; }
+.navbar-nav { align-items: center; gap: .1rem; }
+.navbar .navbar-brand { display: inline-flex; align-items: center; gap: .55rem; margin-right: .75rem;
+  font-family: "Source Serif 4", Georgia, serif; font-weight: 700; color: var(--bs-body-color) !important; }
+.navbar .navbar-brand::before { content: ""; width: 28px; height: 32px; background: url("logo.png") center / contain no-repeat; }
+.navbar .nav-link { display: inline-flex; align-items: center; gap: .4rem; line-height: 1.2; font-weight: 600; white-space: nowrap;
+  color: var(--bs-secondary-color) !important; border-radius: 999px; padding: .4rem .85rem !important; transition: background .15s, color .15s; }
+.navbar .nav-link:hover { color: var(--bs-body-color) !important; background: var(--an-soft); }
+.navbar .nav-item.active .nav-link, .navbar .nav-link.active { color: var(--bs-body-color) !important; background: var(--an-soft); }
+.navbar a[href="#theme"], .navbar a[aria-label="GitHub"] { width: 2.35rem; height: 2.35rem; justify-content: center; padding: 0 !important; }
+.navbar a[href="#theme"] { border: 1px solid var(--an-line); }
+.navbar a[href="#theme"] span { transition: transform .35s; }
+[data-bs-theme="dark"] .navbar a[href="#theme"] span { transform: rotate(180deg); }
+.navbar input[type="search"] { width: 11rem; height: 2.2rem; border-radius: 999px; padding: .3rem .9rem; font-size: .9rem; background: var(--an-soft); border-color: var(--an-line); }
+@media (min-width: 992px) and (max-width: 1320px) {
+  .navbar .nav-link { padding: .35rem .6rem !important; }
+  .navbar input[type="search"] { width: 8.5rem; }
+  .navbar .nav-link[href*="8098"] { font-size: 0; gap: 0; width: 2.35rem; height: 2.35rem; justify-content: center; padding: 0 !important; }
+  .navbar .nav-link[href*="8098"] span { font-size: 1rem; }
+}
+main { margin-top: 1.6rem; }
 
-/* Serif titles like a bulletin; the first title gets a small kicker line. */
+/* ---- Titles like a bulletin ----------------------------------------- */
 h1, h2, h3 { font-family: "Source Serif 4", Georgia, serif; letter-spacing: -0.01em; }
 .template-home h1 { font-size: 2.5rem; }
 .template-home h2 { margin-top: 2.4rem; }
-.template-home h2::before { content: ""; display: block; width: 2.5rem; height: 3px; background: var(--an-navy); margin-bottom: .6rem; }
 
-/* Sidebar sections as soft cards. */
-aside h2 { font-size: 1rem !important; color: var(--an-navy); }
-aside .links, aside .license, aside .citation, aside .developers, aside .dev-status, aside .install {
-  background: var(--bs-tertiary-bg); border-radius: .9rem; padding: 1rem 1.1rem; margin-bottom: 1rem;
-}
-
-/* Code: quiet. */
-pre { border-radius: .9rem; border: 1px solid var(--bs-border-color); background: var(--bs-tertiary-bg); padding: .9rem 1rem; }
-code { font-variant-ligatures: none; }
-
-/* Reference index: numbered rows like a table of contents. */
-.template-reference-index dl { display: grid; grid-template-columns: minmax(11rem, 16rem) 1fr; margin: 0; counter-reset: fn; }
-.template-reference-index dt, .template-reference-index dd { margin: 0; padding: .6rem .25rem; border-bottom: 1px dashed var(--bs-border-color); }
-.template-reference-index dd { color: var(--bs-secondary-color); }
-
-/* Tables: rows with a coloured quality mark (see the gallery article). */
-table.table thead th { font-weight: 600; border-bottom: 2px solid var(--an-navy); }
-.q { display: inline-block; width: .6rem; height: .6rem; border-radius: 50%; margin-right: .35rem; vertical-align: middle; }
-
-/* KPI cards on the home page. */
-.an-kpis { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: .9rem; margin: 1.4rem 0; }
-.an-kpi { background: var(--bs-tertiary-bg); border-radius: .9rem; padding: 1rem 1.1rem; border-top: 4px solid var(--c, var(--an-navy)); }
+/* ---- Home: figures and quality marks --------------------------------- */
+.an-kpis { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: .8rem; margin: 1.2rem 0; }
+.an-kpi { background: var(--an-soft); border-radius: .75rem; padding: 1rem 1.1rem; border-top: 3px solid var(--c, var(--an-accent)); }
 .an-kpi .v { display: block; font-family: "Source Serif 4", Georgia, serif; font-size: 2.1rem; font-weight: 600; line-height: 1.1; }
 .an-kpi .l { display: block; font-size: .9rem; }
 .an-kpi .s { display: block; font-size: .8rem; color: var(--bs-secondary-color); }
+.q { display: inline-block; width: .6rem; height: .6rem; border-radius: 50%; margin-right: .35rem; vertical-align: middle; }
 
+/* ---- Code ------------------------------------------------------------ */
+div.sourceCode { position: relative; background: var(--an-soft); border: 1px solid var(--an-line); border-radius: .75rem; margin: 1rem 0; overflow: hidden; }
+div.sourceCode::before { content: "R"; display: block; padding: .45rem .9rem; font: 600 .72rem/1 "JetBrains Mono", monospace; letter-spacing: .08em; color: var(--an-accent); border-bottom: 1px solid var(--an-line); }
+div.sourceCode pre { margin: 0; border: 0; background: transparent; padding: .85rem 1rem; }
+pre { border-radius: .75rem; border: 1px solid var(--an-line); background: var(--an-soft); }
+pre code, code { font-variant-ligatures: none; }
+:not(pre) > code { background: var(--an-soft); padding: .1em .35em; border-radius: .3rem; }
+.btn-copy-ex { top: .2rem !important; right: .4rem !important; border-radius: .4rem; opacity: .6; }
+.btn-copy-ex:hover { opacity: 1; }
+pre .fu { color: var(--tk-fn); font-weight: 600; }
+pre .st { color: var(--tk-str); }
+pre .fl, pre .dv { color: var(--tk-num); }
+pre .co { color: var(--tk-com); font-style: italic; }
+pre .kw, pre .cf { color: var(--tk-kw); }
+pre .va, pre .ot { color: var(--tk-var); }
+pre .op { color: var(--tk-op); }
+pre .at { color: var(--tk-arg); }
+
+/* ---- Sidebar, function index, tables --------------------------------- */
+aside h2 { font-size: 1rem !important; color: var(--an-accent); margin-top: 1.4rem; }
+aside small.roles { display: none; }
+.template-reference-index dl { display: grid; grid-template-columns: minmax(11rem, 16rem) 1fr; margin: 0; }
+.template-reference-index dt, .template-reference-index dd { margin: 0; padding: .55rem .25rem; border-bottom: 1px solid var(--an-line); }
+.template-reference-index dd { color: var(--bs-secondary-color); }
+table.table thead th { font-weight: 600; border-bottom: 2px solid var(--an-accent); }
+
+/* ---- Footer ---------------------------------------------------------- */
+footer { margin-top: 4rem; padding: 2rem 0 2.5rem; border-top: 1px solid var(--an-line); font-size: .9rem; color: var(--bs-secondary-color); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+footer p { margin: 0; }
+footer strong { color: var(--bs-body-color); }
+
+/* ---- Appear on scroll (extra.js) ------------------------------------- */
 .an-reveal { opacity: 0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease; }
 .an-reveal.an-in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) {
-  .an-reveal { opacity: 1; transform: none; transition: none; }
-}
 
-/* Very wide screens: the page grows a little, and the empty sides carry a
-   quiet animation of small chart bars (line colours only, no blur). */
+/* ---- Very wide screens: small chart bars drifting on the sides ------- */
 @media (min-width: 1600px) {
   .container, .container-xxl { max-width: 1480px; }
   body::before, body::after {
     content: ""; position: fixed; top: 0; bottom: 0; width: calc((100vw - 1480px) / 2 - 2rem);
-    pointer-events: none; z-index: 0; opacity: .5;
+    pointer-events: none; z-index: 0; opacity: .45;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='180' viewBox='0 0 120 180'%3E%3Cg fill='none' stroke-width='6' stroke-linecap='round'%3E%3Cpath d='M15 170V120' stroke='%230d9488'/%3E%3Cpath d='M38 170V90' stroke='%232563eb'/%3E%3Cpath d='M61 170V130' stroke='%237c3aed'/%3E%3Cpath d='M84 170V70' stroke='%23d97706'/%3E%3Cpath d='M107 170V110' stroke='%23e11d48'/%3E%3C/g%3E%3C/svg%3E");
     background-size: 120px 180px;
     animation: an-side 60s linear infinite;
   }
   body::before { left: 1rem; }
   body::after { right: 1rem; animation-direction: reverse; }
-  [data-bs-theme="dark"] body::before, [data-bs-theme="dark"] body::after { opacity: .35; }
+  [data-bs-theme="dark"] body::before, [data-bs-theme="dark"] body::after { opacity: .3; }
 }
 @keyframes an-side { to { background-position: 0 -1800px; } }
-@media (prefers-reduced-motion: reduce) { body::before, body::after { animation: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  body::before, body::after { animation: none; }
+  .an-reveal { opacity: 1; transform: none; transition: none; }
+  @view-transition { navigation: none; }
+}
