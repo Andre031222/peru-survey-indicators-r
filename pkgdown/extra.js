@@ -37,7 +37,14 @@ document.addEventListener("DOMContentLoaded", function () {
       io.unobserve(e.target);
     });
   });
+  // Only what starts below the fold fades in; what is already on screen
+  // stays visible, and its numbers count up right away.
   document.querySelectorAll("main .an-kpi, main table, main img, main h2").forEach(function (el) {
+    if (el.getBoundingClientRect().top < window.innerHeight) {
+      var v = el.querySelector && el.querySelector(".v[data-n]");
+      if (v) count(v);
+      return;
+    }
     el.classList.add("an-reveal"); io.observe(el);
   });
   function count(el) {
