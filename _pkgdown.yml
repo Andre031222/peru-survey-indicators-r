@@ -1,26 +1,71 @@
 url: https://andre031222.github.io/peru-survey-indicators-r/
 lang: es
 
+# Same standard pkgdown structure, a different face from faperu: a light
+# bar with a navy rule, serif titles like a statistical bulletin and the
+# sidebar on the left. Extra styles in pkgdown/extra.css and extra.js.
 template:
   bootstrap: 5
+  light-switch: true
   bslib:
-    primary: "#0F426F"
+    bg: "#ffffff"
+    fg: "#1d1d1f"
+    primary: "#0f426f"
+    secondary: "#0b7c8f"
+    link-color: "#0f426f"
+    border-radius: 0.9rem
     base_font: {google: "Source Sans 3"}
     heading_font: {google: "Source Serif 4"}
     code_font: {google: "JetBrains Mono"}
+    headings-font-weight: 600
 
 home:
   title: "faperu.analysis: indicadores oficiales del Perú con su diseño muestral"
   description: >
     Estimaciones con error estándar, intervalo y banda de calidad del INEI,
-    indicadores verificados contra cifras oficiales, cruce de encuestas por
-    ubigeo, mapas y tablas.
+    indicadores verificados contra cifras oficiales, uniones entre encuestas,
+    tablas y mapas.
+  sidebar:
+    structure: [install, links, license, citation, authors, dev]
+    components:
+      install:
+        title: Instalar
+        text: >
+          `install.packages("remotes")`<br>
+          `remotes::install_github("Andre031222/peru-survey-indicators-r")`<br><br>
+          Instala también faperu. ¿Primera vez con R? Mira
+          [Instalar paso a paso](articles/instalar.html).
+  links:
+  - text: Tablero en línea
+    href: http://127.0.0.1:8098/
+  - text: Sitio de faperu (los datos)
+    href: https://andre031222.github.io/peru-official-surveys-r/
 
 navbar:
+  bg: light
   structure:
-    left: [intro, reference, articles, news]
-    right: [search, github]
+    left: [intro, gallery, reference, articles, news]
+    right: [search, dashboard, github, lightswitch]
   components:
+    intro:
+      text: Empezar
+      href: articles/faperu.analysis.html
+    gallery:
+      text: Galería
+      href: articles/galeria.html
+    dashboard:
+      text: Tablero
+      icon: fa-chart-column
+      href: http://127.0.0.1:8098/
+    articles:
+      text: Artículos
+      menu:
+      - text: Instalar paso a paso
+        href: articles/instalar.html
+      - text: Galería de indicadores 2024
+        href: articles/galeria.html
+      - text: Guía completa
+        href: articles/faperu.analysis.html
     github:
       icon: fa-github
       href: https://github.com/Andre031222/peru-survey-indicators-r
@@ -28,10 +73,12 @@ navbar:
 
 reference:
 - title: "Estimar / Estimate"
+  desc: "Media, proporción o total con su precisión."
   contents:
   - fpa_estimate
   - fpa_quality
 - title: "Indicadores listos / Ready indicators"
+  desc: "Siete indicadores que reproducen las cifras oficiales del INEI."
   contents:
   - fpa_indicators
   - fpa_indicator
@@ -43,6 +90,14 @@ reference:
   - fpa_geometry
   - fpa_map
   - fpa_table
+- title: "Impresión, resumen y gráfico / Print, summary and plot"
+  contents:
+  - fpa-methods
 - title: "Paquete / Package"
   contents:
   - faperu.analysis-package
+
+footer:
+  structure:
+    left: [developed_by]
+    right: [built_with]

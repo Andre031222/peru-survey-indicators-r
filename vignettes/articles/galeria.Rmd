@@ -1,0 +1,68 @@
+---
+title: "Galería de indicadores 2024"
+description: "Los indicadores calculados con los microdatos de 2024: tablas, gráficos y mapas reales."
+---
+
+```{r, include = FALSE}
+# The gallery runs when a local copy of the microdata is available
+# (FAPERU_LOCAL); otherwise only the code is shown.
+has_data <- nzchar(Sys.getenv("FAPERU_LOCAL"))
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = has_data,
+                      fig.width = 7.5, fig.height = 6, dpi = 150, message = FALSE, warning = FALSE)
+if (has_data) faperu::fa_cache(Sys.getenv("FAPERU_LOCAL"))
+options(survey.lonely.psu = "adjust")
+```
+
+Cada resultado de esta página se calcula con los microdatos y el diseño muestral de su encuesta.
+
+## Los siete indicadores
+
+```{r}
+library(faperu.analysis)
+```
+
+```{r, echo = FALSE}
+i <- fpa_indicators()
+knitr::kable(i[, c("id", "survey", "label")], col.names = c("Indicador", "Encuesta", "Qué mide"))
+```
+
+## Pobreza monetaria por departamento
+
+```{r}
+p <- fpa_indicator("pobreza_monetaria", 2024, by = "department")
+```
+
+```{r, echo = FALSE, results = "asis"}
+cat(fpa_table(p, format = "markdown"), sep = "\n")
+```
+
+Cada barra es la estimación con su intervalo de confianza al 95 %; el color es la banda de calidad
+del INEI.
+
+```{r, echo = FALSE}
+plot(p, main = "")
+```
+
+```{r, echo = FALSE, fig.height = 7}
+fpa_map(p)
+```
+
+## Anemia y desempleo, urbano y rural
+
+```{r, echo = FALSE, results = "asis"}
+a <- fpa_indicator("anemia_6_35", 2024, by = "area")
+d <- fpa_indicator("desempleo", 2024, by = "area")
+cat("**Anemia de 6 a 35 meses (ENDES 2024)**\n\n")
+cat(fpa_table(a, format = "markdown"), sep = "\n")
+cat("\n\n**Desempleo abierto (EPEN 2024)**\n\n")
+cat(fpa_table(d, format = "markdown"), sep = "\n")
+```
+
+## ¿Qué tan precisas son las 25 cifras de pobreza?
+
+```{r}
+summary(p)
+```
+
+Una de cada ocho cifras departamentales de pobreza es solo referencial para el INEI (CV mayor a
+15 %): conviene leerlas con cuidado o juntar años.

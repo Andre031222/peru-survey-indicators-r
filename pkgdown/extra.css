@@ -1,0 +1,79 @@
+/* faperu.analysis: the standard pkgdown page with the face of a statistical
+   bulletin: light bar, serif titles, soft cards. Pure white or black page. */
+
+:root, [data-bs-theme="light"] {
+  --bs-body-bg: #ffffff;
+  --an-navy: #0f426f;
+  --an-1: #0d9488; --an-2: #2563eb; --an-3: #7c3aed; --an-4: #d97706; --an-5: #e11d48;
+}
+[data-bs-theme="dark"] {
+  --bs-body-bg: #000000;
+  --bs-tertiary-bg: #1c1c1e;
+  --bs-border-color: #2c2c2e;
+  --bs-link-color: #7fb3ea;
+  --bs-link-color-rgb: 127, 179, 234;
+  --an-navy: #7fb3ea;
+}
+
+/* Light bar with a thin neutral rule. */
+.navbar { background: var(--bs-body-bg) !important; border-bottom: 1px solid var(--bs-border-color); }
+.navbar .nav-link { font-weight: 600; white-space: nowrap; }
+.navbar .navbar-brand { font-family: "Source Serif 4", Georgia, serif; font-weight: 700; }
+
+main { margin-top: 1.8rem; }
+
+/* Serif titles like a bulletin; the first title gets a small kicker line. */
+h1, h2, h3 { font-family: "Source Serif 4", Georgia, serif; letter-spacing: -0.01em; }
+.template-home h1 { font-size: 2.5rem; }
+.template-home h2 { margin-top: 2.4rem; }
+.template-home h2::before { content: ""; display: block; width: 2.5rem; height: 3px; background: var(--an-navy); margin-bottom: .6rem; }
+
+/* Sidebar sections as soft cards. */
+aside h2 { font-size: 1rem !important; color: var(--an-navy); }
+aside .links, aside .license, aside .citation, aside .developers, aside .dev-status, aside .install {
+  background: var(--bs-tertiary-bg); border-radius: .9rem; padding: 1rem 1.1rem; margin-bottom: 1rem;
+}
+
+/* Code: quiet. */
+pre { border-radius: .9rem; border: 1px solid var(--bs-border-color); background: var(--bs-tertiary-bg); padding: .9rem 1rem; }
+code { font-variant-ligatures: none; }
+
+/* Reference index: numbered rows like a table of contents. */
+.template-reference-index dl { display: grid; grid-template-columns: minmax(11rem, 16rem) 1fr; margin: 0; counter-reset: fn; }
+.template-reference-index dt, .template-reference-index dd { margin: 0; padding: .6rem .25rem; border-bottom: 1px dashed var(--bs-border-color); }
+.template-reference-index dd { color: var(--bs-secondary-color); }
+
+/* Tables: rows with a coloured quality mark (see the gallery article). */
+table.table thead th { font-weight: 600; border-bottom: 2px solid var(--an-navy); }
+.q { display: inline-block; width: .6rem; height: .6rem; border-radius: 50%; margin-right: .35rem; vertical-align: middle; }
+
+/* KPI cards on the home page. */
+.an-kpis { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: .9rem; margin: 1.4rem 0; }
+.an-kpi { background: var(--bs-tertiary-bg); border-radius: .9rem; padding: 1rem 1.1rem; border-top: 4px solid var(--c, var(--an-navy)); }
+.an-kpi .v { display: block; font-family: "Source Serif 4", Georgia, serif; font-size: 2.1rem; font-weight: 600; line-height: 1.1; }
+.an-kpi .l { display: block; font-size: .9rem; }
+.an-kpi .s { display: block; font-size: .8rem; color: var(--bs-secondary-color); }
+
+.an-reveal { opacity: 0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease; }
+.an-reveal.an-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .an-reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Very wide screens: the page grows a little, and the empty sides carry a
+   quiet animation of small chart bars (line colours only, no blur). */
+@media (min-width: 1600px) {
+  .container, .container-xxl { max-width: 1480px; }
+  body::before, body::after {
+    content: ""; position: fixed; top: 0; bottom: 0; width: calc((100vw - 1480px) / 2 - 2rem);
+    pointer-events: none; z-index: 0; opacity: .5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='180' viewBox='0 0 120 180'%3E%3Cg fill='none' stroke-width='6' stroke-linecap='round'%3E%3Cpath d='M15 170V120' stroke='%230d9488'/%3E%3Cpath d='M38 170V90' stroke='%232563eb'/%3E%3Cpath d='M61 170V130' stroke='%237c3aed'/%3E%3Cpath d='M84 170V70' stroke='%23d97706'/%3E%3Cpath d='M107 170V110' stroke='%23e11d48'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 120px 180px;
+    animation: an-side 60s linear infinite;
+  }
+  body::before { left: 1rem; }
+  body::after { right: 1rem; animation-direction: reverse; }
+  [data-bs-theme="dark"] body::before, [data-bs-theme="dark"] body::after { opacity: .35; }
+}
+@keyframes an-side { to { background-position: 0 -1800px; } }
+@media (prefers-reduced-motion: reduce) { body::before, body::after { animation: none; } }

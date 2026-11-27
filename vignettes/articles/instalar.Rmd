@@ -1,0 +1,58 @@
+---
+title: "Instalar paso a paso"
+description: "Desde cero: R, RStudio, faperu y faperu.analysis, sin experiencia previa."
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+Esta guía es para quien nunca instaló un paquete de R. Son cuatro pasos y toman unos diez minutos.
+
+## 1. Instalar R
+
+Descarga R desde [CRAN](https://cran.r-project.org/) e instálalo con las opciones por defecto.
+
+| Sistema | Qué bajar |
+|---|---|
+| Windows | *Download R for Windows* y luego *base* |
+| macOS | El `.pkg` de tu procesador (Apple Silicon o Intel) |
+| Linux | El paquete `r-base` de tu distribución |
+
+## 2. Instalar RStudio (opcional, recomendado)
+
+[RStudio Desktop](https://posit.co/download/rstudio-desktop/) es gratuito y hace más cómodo trabajar
+con R. Ábrelo después de instalar R.
+
+## 3. Instalar faperu.analysis
+
+Copia estas dos líneas en la consola de RStudio y presiona Enter:
+
+```{r}
+install.packages("remotes")
+remotes::install_github("Andre031222/peru-survey-indicators-r")   # trae también faperu
+```
+
+Cuando esté en CRAN será una sola línea: `install.packages("faperu.analysis")`.
+
+## 4. Probar que funciona
+
+```{r}
+library(faperu.analysis)
+fpa_indicators()
+```
+
+Si ves la lista de los siete indicadores, ya está. Para calcular el primero, sigue la
+[guía completa](faperu.analysis.html).
+
+## Si algo sale mal
+
+| Mensaje | Qué hacer |
+|---|---|
+| `there is no package called 'remotes'` | Ejecuta primero `install.packages("remotes")`. |
+| Error al compilar en Linux | Instala las bibliotecas del sistema: `libcurl4-openssl-dev` y `libssl-dev`. |
+| `HTTP 404` o la descarga se corta | El portal del INEI puede estar lento; vuelve a ejecutar, faperu continúa donde quedó. |
+| No sabes qué módulo usar | Búscalo en el [explorador en línea](http://127.0.0.1:8099/explore) y copia el código. |
+
+Las descargas se guardan en una carpeta de caché (`fa_cache()`), así que cada archivo se baja una
+sola vez.
