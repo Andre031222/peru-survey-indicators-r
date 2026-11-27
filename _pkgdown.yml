@@ -2,7 +2,7 @@ url: https://andre031222.github.io/peru-survey-indicators-r/
 lang: es
 
 # Same pattern and order as the faperu site, its own face: a light bar,
-# serif titles and navy. A home button, one theme button (automatic by
+# Plus Jakarta Sans and navy. A home button, one theme button (automatic by
 # default), quiet code boxes and a real footer. See pkgdown/extra.css.
 template:
   bootstrap: 5
@@ -14,10 +14,10 @@ template:
     secondary: "#0b7c8f"
     link-color: "#0f426f"
     border-radius: 0.75rem
-    base_font: {google: "Source Sans 3"}
-    heading_font: {google: "Source Serif 4"}
+    base_font: {google: "Plus Jakarta Sans"}
+    heading_font: {google: "Plus Jakarta Sans"}
     code_font: {google: "JetBrains Mono"}
-    headings-font-weight: 600
+    headings-font-weight: 700
 
 home:
   title: "faperu.analysis: indicadores oficiales del Perú con su diseño muestral"
